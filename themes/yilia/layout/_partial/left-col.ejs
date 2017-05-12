@@ -1,5 +1,9 @@
 <% var defaultBg = '#4d4d4d'; %>
-<div class="overlay" style="background: <%= theme.style && theme.style.header ? theme.style.header : defaultBg %>"></div>
+<div class="overlay" style="background: <%= theme.style && theme.style.header ? theme.style.header : defaultBg %>">
+<% if(theme.counter) {%>
+<%- partial('counter') %>
+<% } %>	
+</div>
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
@@ -11,7 +15,6 @@
 		<% if (theme.subtitle){ %>
 		<p class="header-subtitle"><%=theme.subtitle%></p>
 		<%}%>
-
 		<nav class="header-menu">
 			<ul>
 			<% for (var i in theme.menu){ %>
@@ -33,5 +36,5 @@
 		        <%}%>
 			</div>
 		</nav>
-	</header>		
+	</header>	
 </div>

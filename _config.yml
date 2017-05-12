@@ -9,7 +9,7 @@ description: 江西环境工程职业学院2013级,擅长前端技能，深入�
 author: 曾 亮
 language: zh-CN
 timezone:
-keywords: "前端,js,C,C#,程序猿"
+keywords: 前端,js,C,C#,程序猿,曾亮,博客,cczeng,码农,曾亮的博客,诗和远方
 
 
 # URL
@@ -43,7 +43,7 @@ highlight:
   enable: true
   line_number: true
   auto_detect: false
-  tab_replace:
+  tab_replace: 
 
 # Category & Tag
 default_category: uncategorized
@@ -67,6 +67,12 @@ pagination_dir: page
 ## Themes: https://hexo.io/themes/
 theme: yilia
 
+
+# 自动生成sitemap
+sitemap:
+  path: sitemap.xml
+baidusitemap:
+  path: baidusitemap.xml
 ## 所有文章
 jsonContent:
     meta: false

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>发牌游戏</title>
+	<style>
+		.brand {
+			width: 105px;
+			height: 150px;
+			float: left;
+			margin-right: 10px;
+			margin-top: 20px;
+			transition: all 0.8s;
+		}
+		.brandBack{
+			transform: rotateY(360deg);
+			transition:all 0.8s;
+		}
+	</style>
+</head>
+<body>
+	请输入要洗牌的个数.<input type="text" name="" id="value">
+	<button onclick="getValue()">发牌</button>
+	<button onclick="openAllCards()">翻起全部</button>
+	<button onclick="closeAllCards()">盖起全部</button>
+	<div id="poker">
+		
+	</div>
+
+
+
+	<script>
+		var chars = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
+		//每一张牌的路径,brands下标对应A-K(13张)
+		var brands = ["img/14.jpg","img/15.jpg","img/16.jpg","img/4.jpg","img/5.jpg","img/6.jpg","img/7.jpg","img/21.jpg","img/35.jpg","img/49.jpg","img/11.jpg","img/12.jpg","img/13.jpg"];
+		//牌的背面
+		var back = "img/back.jpg";
+		var poker = document.getElementById('poker');
+
+		function generateMixed() {
+	         var id = Math.ceil(Math.random()*13);
+		     return id;
+		}
+		//创建牌
+		function createBrand(n) {
+			for(var i =0; i< n;i++)
+			{
+				var img = document.createElement('img');
+				var num = generateMixed();
+				var imgSrc = brands[num-1];
+				img.setAttribute('src',back);
+				img.setAttribute('alt','扑克');
+				img.setAttribute('index',imgSrc);
+				img.setAttribute('class','brand');
+				img.setAttribute('row',chars[num-1]);
+				img.onmouseover = function(){
+					flop(this);
+				}
+				img.onmouseout = function(){
+					flopBack(this);
+				}
+				img.onclick = function(){
+					turn(this);
+				}
+				poker.appendChild(img);
+			}
+		}
+		//设置要生成牌的张数
+		function getValue()
+		{
+			var value = document.getElementById('value');
+			createBrand(value.value);
+		}
+		//开牌
+		function flop(element) {
+			element.setAttribute('class','brand brandBack');
+			element.setAttribute('src',element.getAttribute('index'));
+		}
+		//盖牌
+		function flopBack(element) {
+			element.setAttribute('class','brand');
+			element.setAttribute('src',back);
+		}
+		//点击开牌
+		function turn(element) {
+			element.setAttribute('class','brand brandBack');
+			element.setAttribute('src',element.getAttribute('index'));
+			element.onmouseout = null;
+		}
+		//翻起全部牌
+		function openAllCards() {
+			var brandsList = poker.getElementsByTagName('img');
+			for(var i=0;i<brandsList.length;i++)
+			{
+				brandsList[i].setAttribute('class','brand brandBack');
+				brandsList[i].setAttribute('src',brandsList[i].getAttribute('index'));
+				brandsList[i].onmouseout = function(){
+					flopBack(this);
+				}
+			}
+		}
+		//盖起全部牌
+		function closeAllCards(){
+			var brandsList = poker.getElementsByTagName('img');
+			for(var i=0;i<brandsList.length;i++)
+			{
+				brandsList[i].setAttribute('class','brand');
+				brandsList[i].setAttribute('src',back);
+				brandsList[i].onmouseout = function(){
+					flopBack(this);
+				}
+			}
+		}
+	</script>
+</body>
+</html>

@@ -33,7 +33,7 @@ root:
 # Content
 
 # 文章太长，截断按钮文字
-excerpt_link: more
+excerpt_link: 
 # 文章卡片右下角常驻链接，不需要请设置为false
 show_all_link: '展开全文'
 # 数学公式
@@ -71,11 +71,11 @@ share_jia: true
 duoshuo: false
 
 #2、网易云跟帖
-wangyiyun: false
+wangyiyun: fd9aceff07134e4f9c230333725250f0
 
 #3、畅言
-changyan_appid: cysWBK2R1
-changyan_conf: c0d676145cb5b4242cedcdef8d2e97d6
+changyan_appid: false
+changyan_conf: false
 
 #4、Disqus 在hexo根目录的config里也有disqus_shortname字段，优先使用yilia的
 disqus: false
@@ -91,6 +91,9 @@ style:
 slider:
   # 是否默认展开tags板块
   showTags: true
+
+#是否开启访客数量统计功能
+counter: true
 
 # 智能菜单
 # 如不需要，将该对应项置为false
