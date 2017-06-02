@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>纯css实现元素移动动画</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<style>
+		html,body{
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+		}
+		.move {
+			width: 100px;
+			height: 100px;
+			background: red;
+			transform: translate3d(1500px,0,0);
+			-webkit-animation-name:myfirst;   /*要绑定的规则名 */
+		    -webkit-animation-duration:2s;    /*动画完成一个周期的时间*/
+		    -webkit-animation-timing-function:ease-out;  /*动画规定的速度曲线*/
+		    -webkit-animation-delay:0s;      /* 动画何时开始*/
+		    -webkit-animation-iteration-count:5;  /*动画被播放次数*/
+		    -webkit-animation-direction:normal;  /*规定动画是否在下一周期逆向地播放。默认是 "normal"。*/
+		    -webkit-animation-fill-mode:backwards; /*规定对象动画时间之外的状态。*/
+		}
+
+		@keyframes myfirst {
+			0% {
+				transform: translate3d(1500px,0,0);
+			}
+			40% {
+				transform: translate3d(25px,0,0);
+			}
+			52% {
+				transform: translate3d(50px,0,0);
+			}
+			65% {
+				transform: translate3d(25px,0,0);
+			}
+			70% {
+				transform: translate3d(25px,0,0);
+			}
+			100% {
+				transform: translate3d(1500px,0,0);
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="move"></div>
+
+</body>
+</html>

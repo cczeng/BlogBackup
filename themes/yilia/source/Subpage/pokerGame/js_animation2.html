@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js 动画2,实用的动画</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		html,body{
+			height: 100%;
+			width: 100%;
+			position: relative;
+		}
+		#slideshow {
+			width: 200px;
+			height: 200px;
+			position: absolute;
+			z-index: 99;
+		}
+		img {
+			position: absolute;
+			width: 200px;
+			height: 200px;
+			cursor:move;
+		}
+	</style>
+</head>
+<body>
+	<p>鼠标任意点击一个地方图片即可跟随</p>
+	<div onmousedown="mouseDragIf(this)">
+		<img id="slideshow" src="img/demo.jpg" alt="图片" />
+	</div>
+
+
+	<script>
+		//预加载函数
+		function addLoadEvent(func) {
+			var onLoad = window.onload;
+			if(typeof window.onload != 'function'){
+				window.onload = func;
+			}else{
+				window.onload = function(){
+					onLoad();
+					func();
+					console.log(func + ' ');
+				}
+			}
+		}
+		//修改元素的left和top属性进行移动
+		//注意：只有使用了dom脚本或style属性为元素分配了位置后才能获取到left和top值,否则获取不到
+		function moveElement(elementID,final_x,final_y,time_val){
+			if(!document.getElementById) return false;
+			if(!document.getElementById(elementID)) return false;
+			var elem = document.getElementById(elementID);
+			if(elem.movement)
+				clearTimeout(elem.movement);
+			//安全检查
+			if(!elem.style.left){
+				elem.style.left = "0px";
+			}
+			if(!elem.style.top){
+				elem.style.top = "0px";
+			}
+			var xpos = parseInt(elem.style.left);
+			var ypos = parseInt(elem.style.top);
+			var dist = 0;	//移动距离
+			if(xpos == final_x && ypos == final_y)
+				return true;
+			if(xpos < final_x){
+				//方法Math.ceil()
+				//ceil() 方法可对一个数进行上舍入。
+				dist = Math.ceil((final_x - xpos)/10);
+				xpos += dist;
+			}
+			if(xpos > final_x){
+				dist = Math.ceil((xpos - final_x)/10);
+				xpos -= dist;
+			}
+			if(ypos < final_y){
+				dist = Math.ceil((final_y - ypos)/10);
+				ypos += dist;
+			}
+			if(ypos > final_y){
+				dist = Math.ceil((ypos - final_y)/10);
+				ypos -= dist;
+			}
+			elem.style.left = xpos + 'px';
+			elem.style.top = ypos + 'px';
+			var repeat = "moveElement('"+elementID+"',"+final_x+","+final_y+","+time_val+")";
+			//JavaScript允许我们为元素创建属性，这里创建了一个属性movement
+			elem.movement=setTimeout(repeat,time_val);
+		}
+		//获取鼠标位置
+		function getMousePos(event) {
+		    var e = event || window.event;
+		    var scrollX = document.documentElement.scrollLeft || document.body.scrollLeft;
+		    var scrollY = document.documentElement.scrollTop || document.body.scrollTop;
+		    var x = e.pageX || e.clientX + scrollX;
+		    var y = e.pageY || e.clientY + scrollY;
+		    //alert('x: ' + x + '\ny: ' + y);
+		    document.getElementsByTagName('p')[0].innerHTML = x + "," + y;
+		    moveElement("slideshow",x-100,y-100,3);
+		}
+		
+		function mouseDragIf(elem){
+			if(elem.flag){
+				elem.onmousemove = function () {
+					getMousePos();
+				}
+				elem.flag = 0;
+			}else{
+				elem.onmousemove = null;
+				elem.flag = 1;
+			}
+		}
+	</script>
+</body>
+</html>

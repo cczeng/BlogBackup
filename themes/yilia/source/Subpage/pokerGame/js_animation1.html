@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JavaScript动画</title>
+	<style>
+		#move {
+			width: 50px;
+			height: 50px;
+			background: red;
+			position: absolute;
+			transform:translate3d(0px,0px,0px);
+		}
+		span {
+			margin-right: 30px;
+		}
+		.input {
+			position: fixed;
+			top: 0;
+			left: 20%;
+		}
+	</style>
+</head>
+<body>
+	<div id="move"></div>
+	
+	<div class="input">
+		<p>效果1:修改元素left、top属性。&nbsp;&nbsp;&nbsp;&nbsp;效果2:修改元素transform：translate3d(x,y)</p>
+		left:
+		<input type="range" max="1000" min="200" step="5" value="300" oninput="change(this)" onchange="change(this)" id="input1" /><span>300</span>
+		top:
+		<input type="range" max="1000" min="200" step="5" value="300" oninput="change(this)" onchange="change(this)" id="input2" /><span>300</span>
+		time:
+		<input type="range" max="100" min="5" step="2" value="10" oninput="change(this)" onchange="change(this)" id="input3" /><span>10</span>
+		<button onclick="run()">效果1</button>
+		<button onclick="runTran()">效果2</button>
+		<br />
+		<p id="view1"></p>
+		<p id="view2"></p>
+	</div>
+
+
+
+
+	<script>
+		//预加载函数
+		function addLoadEvent(func) {
+			var onLoad = window.onload;
+			if(typeof window.onload != 'function'){
+				window.onload = func;
+			}else{
+				window.onload = function(){
+					onLoad();
+					func();
+				}
+			}
+		}
+		//修改元素的left和top属性进行移动
+		//注意：只有使用了dom脚本或style属性为元素分配了位置后才能获取到left和top值,否则获取不到
+		function moveElement(elementID,final_x,final_y,speed){
+			//对象检测
+			if(!document.getElementById) return false;
+			if(!document.getElementById(elementID)) return false;
+			var elem = document.getElementById(elementID);
+			var dist = 0;
+			if(elem.movement)
+				clearTimeout(elem.movement);
+			var xpos = parseInt(elem.style.left);
+			var ypos = parseInt(elem.style.top);
+			//安全检查
+			if(!elem.style.left){
+				elem.style.left = "0px";
+			}
+			if(!elem.style.top){
+				elem.style.top = "0px";
+			}
+			if(xpos == final_x && ypos == final_y)
+				return true;
+			if(xpos < final_x){
+				//方法Math.ceil()
+				//ceil() 方法可对一个数进行上舍入。
+				dist = Math.ceil((final_x - xpos)/speed);
+				xpos += dist;
+			}
+			if(xpos > final_x){
+				dist = Math.ceil((xpos - final_x)/speed);
+				xpos -= dist;
+			}
+			if(ypos < final_y){
+				dist = Math.ceil((final_y - ypos)/speed);
+				ypos += dist;
+			}
+			if(ypos > final_y){
+				dist = Math.ceil((ypos - final_y)/speed);
+				ypos -= dist;
+			}
+			elem.style.left = xpos + 'px';
+			elem.style.top = ypos + 'px';
+			var repeat = "moveElement('"+elementID+"',"+final_x+","+final_y+","+speed+")";
+			var view = document.getElementById('view1');
+			view.innerHTML = "left:" + xpos+ "px  top:" + ypos + "px";
+			//JavaScript允许我们为元素创建属性，这里创建了一个属性movement
+			elem.movement=setTimeout(repeat,10);
+		}
+		//修改元素的translate3d()实现移动.
+		//注意：只有使用了dom脚本或style属性为元素分配了transform才能获取到translate3d值,否则获取不到
+		function moveElementTran(elementID,tran_x,tran_y,speed){
+			//对象检测
+			if(!document.getElementById) return false;
+			if(!document.getElementById(elementID)) return false;
+			var elem = document.getElementById(elementID);
+			var dist = 0;
+			var transForm = elem.style.transform || '';
+			//正则.match()方法返回一个数组
+			//说明：(x)匹配的值保存在数组
+			var xpos = transForm.match(/translate3d\(\s*(\d+)+px,\s*(\d+)px,\s*(\d+)px\)/i);
+			var ypos = transForm.match(/translate3d\(\s*(\d+)+px,\s*(\d+)px,\s*(\d+)px\)/i);
+			if(elem.movement)
+				clearTimeout(elem.movement);
+			if(xpos == null && ypos == null)
+			{
+				xpos=ypos=0;
+			}else{
+				xpos = xpos[1] -0;
+				ypos = ypos[2] -0;
+			}
+			if(xpos == tran_x && ypos == tran_y)
+				return true;
+			if(xpos < tran_x){
+				//方法Math.ceil()
+				//ceil() 方法可对一个数进行上舍入。
+				dist = Math.ceil((tran_x - xpos)/speed);
+				xpos += dist;
+			}
+			if(xpos > tran_x){
+				dist = Math.ceil((xpos - tran_x)/speed);
+				xpos -= dist;
+			}
+			if(ypos < tran_y){
+				dist = Math.ceil((tran_y - ypos)/speed);
+				ypos += dist;
+			}
+			if(ypos > tran_y){
+				dist = Math.ceil((ypos - tran_y)/speed);
+				ypos -= dist;
+			}
+			var tran3d = "translate3d(" + xpos + "px,"+ ypos + "px," + "0" + ")";
+			elem.style.transform = tran3d ;
+			var repeat = "moveElementTran('"+elementID+"',"+tran_x+","+tran_y+","+speed+")";
+			var view = document.getElementById('view2');
+			view.innerHTML = tran3d;
+			//JavaScript允许我们为元素创建属性，这里创建了一个属性movement
+			elem.movement=setTimeout(repeat,10);
+		}
+		function positionMessage(x,y,time){
+			if(!document.getElementById) return false;
+			if(!document.getElementById('move')) return false;
+			moveElement("move",x,y,time);
+		}
+		function positionMessageTran(x,y,time){
+			if(!document.getElementById) return false;
+			if(!document.getElementById('move')) return false;
+			moveElementTran("move",x,y,time);
+		}
+		function change(elem){
+			var nextSibling = elem.nextSibling;
+			nextSibling.innerHTML = elem.value;
+  		}
+  		function run() {
+  			var x = document.getElementById('input1').value;
+  			var y = document.getElementById('input2').value;
+  			var time = document.getElementById('input3').value;
+  			positionMessage(x,y,time);
+  		}
+  		function runTran() {
+  			var x = document.getElementById('input1').value;
+  			var y = document.getElementById('input2').value;
+  			var time = document.getElementById('input3').value;
+  			positionMessageTran(x,y,time);
+  		}
+	</script>
+</body>
+</html>
