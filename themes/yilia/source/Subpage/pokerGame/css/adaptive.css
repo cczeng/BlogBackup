@@ -1,0 +1,9 @@
+@media screen and (max-width:690px){
+	.button{
+		padding: 0.2em;
+	}
+	.viewBottom div{
+		left: 0;
+	}
+
+}

@@ -1,0 +1,213 @@
+/** 清除内外边距 **/
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote,div, /* structural elements 结构元素 */
+dl, dt, dd, ul, ol, li, /* list elements 列表元素 */
+pre, /* text formatting elements 文本格式元素 */
+form, fieldset, legend, button, input, textarea, /* form elements 表单元素 */
+th, td /* table elements 表格元素 */ {
+    margin: 0;
+    padding: 0;
+}
+p,a,div,span,input,label,h1,h2,h3{
+	font:"Microsoft Yahei",Tahoma, Helvetica, Arial, "SimSun", sans-serif;
+	color:rgba(255,255,255,0.8);
+}
+html,body{
+	font-size: 100%;
+	width: 100%;
+	height: 100%;
+}
+body{
+	background: url(../img/lk.jpg) 0 / cover fixed;
+	position: relative;
+}
+.history,.list,div,span,{
+	transition: all 0.4s;
+}
+.history:hover,.list:hover,div:hover,span:hover{
+	transition: all 0.4s;
+}
+h2{
+	color: #fff;
+}
+article {
+	position: absolute;
+	width: 90%;
+	height: 90%;
+	margin: 2.5% 5% 0;
+	text-align: center;
+	background: hsla(0,0%,50%,0.3);
+	overflow: hidden;
+	box-shadow: 0px 0px 8px rgba(0,0,0,.8);
+}
+article::before {
+	content: '';
+	position: absolute;
+	top: 0;right: 0;left: 0;bottom: 0;
+	filter: blur(20px);
+	background: url(../img/lk.jpg) 0 / cover fixed;
+	z-index: -1;
+	margin: -30px;
+}
+h2{
+	display: block;
+	width: 100%;
+	height: 4em;
+	line-height: 4em;
+	margin: 5px 0 3px 5px;
+	background: rgb(0,176,240);
+	color: #fff;
+	font-size: 1.4em;
+	box-shadow: 0px 1px 1px #000;
+	z-index: 99;
+}
+#mask {
+	width: 100%;
+	height: 100%;
+	background: rgba(55,62,64,1);
+	position: absolute;
+	left: 0;
+	top: -100%;
+	z-index: 99;
+	opacity: 0;
+	transition: all .8s;
+}
+#mask h1 {
+	font-size: 10rem;
+	margin-top: 2rem;
+	color: rgb(0,179,140);
+}
+#mask button {
+	width: 10rem;
+	height: 4rem;
+	font-size: 2rem;
+	border-radius: 20px;
+	margin: 10% auto;
+	color: rgb(0,179,140);
+	background:none;
+	border: 3px solid rgb(0,179,140);
+	transition:all 0.6s;
+	cursor: pointer;
+	outline: none;
+}
+#mask button:hover {
+	color: rgb(0,176,240);
+	border-color: rgb(0,176,240);
+	transition: all 0.6s;
+}
+/*历史记录*/
+.history{
+	display: block;
+	width: 20%;
+	height: 20%;
+	background: rgb(55,62,64);
+	opacity: .3;
+	position: absolute;
+	left: .5rem;
+	bottom: 1rem;
+	z-index: 999;
+	text-align: center;
+	overflow: auto;
+	transition: all 0.4s;
+	box-shadow: 0 0 3px rgba(0,0,0,.9);
+}
+.history:hover{
+	height: 65%;
+	opacity: 1;
+	transition: all 0.4s;
+}
+.history div {
+	overflow: hidden;
+	position: absolute;
+	bottom: 0;
+}
+.history .list{
+	display: inline-block;
+	color: rgb(0,179,140);
+	font-size: .6rem;
+	margin-bottom: 10px;
+	text-align: center;
+	text-indent: .4rem;
+}
+.history .list span {
+	display: inline-block;
+	font-size: 1rem;
+	margin: 0 .4rem;
+	padding: 0 .4rem 0 0;
+	background: rgb(0,176,240);
+}
+#score{
+	display: inline-block;
+	width: 8rem;
+	height: 4rem;
+	line-height: 4rem;
+	font-size: 2rem;
+	background:rgb(0,176,240);
+	color: rgb(55,62,64);
+	z-index: 99;
+}
+/*历史记录end*/
+/*扑克牌*/
+.poker{
+	display: inline-block;
+	width: 6.575rem;
+	height: 8.5rem;
+	background: #fff;
+	border-radius: 5px;
+	box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+	position: absolute;
+	left: 45%;
+	top: 40%;
+	transition: all 1s;
+	cursor: pointer;
+}
+.poker img {
+	width: 100%;
+	height: 100%;
+	border-radius: 5px;
+}
+.pokerBig {
+	width: 6.575rem;
+	height: 8.5rem;
+}
+.face {
+	width: 100%;
+	height: 100%;
+	background-image: url(../faces/4_1.svg);
+	background-size: 100%;
+}
+.poker:hover{
+	transform: translateY(-30px);
+	box-shadow: 0 0 3rem rgba(128,0,0,1);
+	/*z-index: 999  !important;*/
+	transition: all 0.8s;
+}
+.poker .topleft {
+	position: absolute;
+	left: .4rem;
+	top: .2rem;
+	color: #000;
+}
+.poker .botton {
+	position: absolute;
+	bottom: .2rem;
+	right: .4rem;
+	color: #000;
+	transform: rotate(180deg);
+}
+/*扑克牌end*/
+@media all and (min-width: 800px) and (max-width: 1200px){
+	.poker {
+		width: 3.875rem;
+		height: 5.5rem;
+		margin-left: -3rem;
+		font-size: 40%;
+	}
+	.poker .topleft {
+		left: .2rem;
+		top: .1rem;
+	}
+	.poker .botton {
+		bottom: .1rem;
+		right: .2rem;
+	}
+}

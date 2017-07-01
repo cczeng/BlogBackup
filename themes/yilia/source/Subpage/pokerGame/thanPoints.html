@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>扑克人机战</title>
+	<link rel="stylesheet" href="css/poker.css">
+
+</head>
+<body>
+	<article id="pokerParent">
+		<h2>扑克人机战</h2>
+		<!-- 结束弹出框 -->
+		<div id="mask">
+			<h1 id="endView">GO!</h1>
+			<button onclick="start()">开始</button>
+		</div>
+		<!-- 弹出框end -->
+		<!-- 得分 -->
+		<span class="score" id="score">0</span>
+		<!-- 扑克 -->
+	</article>
+	<!-- 历史战绩 -->
+	<span class="history">
+		<div id="History" onmouseover="displayList(this)" onmouseout="this.style.position= 'absolute'">
+<!-- 			<span class="list">
+				第<span>1</span>回合:<span>8:13</span>你赢了,<span>用户+1</span>
+			</span>  -->
+		</div>
+	</span>
+	<!-- 历史战绩end -->
+
+
+	<script src="js/poker.js"></script>
+</body>
+</html>

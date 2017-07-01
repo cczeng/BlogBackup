@@ -1,0 +1,119 @@
+div,p,ul,a,h1,h2,h3,h4,img {
+	margin: 0;
+	padding: 0;
+}
+a {
+	text-decoration: none;
+}
+body{
+	background: url(../img/bg.jpg);
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+.layout{
+	display: block;
+	width: 90%;
+	margin: 0;
+	padding: 0;
+	position: relative;
+}
+.top{
+	width: 100%;
+	border-bottom: 1px solid #ccc;
+	clear: both;
+	text-align: center;
+	letter-spacing: 0.8em;
+	padding: 0.4em 0;
+	color: #fff;
+}
+.left{
+	float: left;
+	width: 20%;
+	height: 25em;
+	border-right: 1px solid #ccc;
+}
+.center {
+	float: left;
+	width: 60%;
+	height: 25em;
+	position: relative;
+}
+.right {
+	float: right;
+	width: 19%;
+	height: 25em;
+	border-left: 1px solid #ccc;
+}
+.bottom {
+	width: 100%;
+	border-top: 1px solid #ccc;
+	clear: both;
+}
+.viewBottom{
+	float: left;
+	width: 61%;
+	height: 10em;
+	margin-left: 20%;
+	position: absolute;
+	bottom: 0;
+	border-top: 1px solid #ccc;
+}
+.button {
+	display: inline-block;
+	height: 2em;
+	line-height: 2em;
+	background: rgba(87,210,247,0.8);
+	color: #FFF;
+	margin-left: 1em;
+	padding: 0 2em;
+	letter-spacing: normal;
+	border-bottom-left-radius: 3em;
+	border-top-left-radius: 3em;
+	border-bottom-right-radius: 3em;
+	border-top-right-radius: 3em;
+	transition: all 1s;
+}
+.put {
+	background: rgba(249,184,92,0.8);
+}
+.viewBottom div {
+	text-align: center;
+	position: absolute;
+	bottom: 0;
+	left: 15%;
+}
+.userHead{
+	width: 100px;
+	height: 100px;
+	background: url(../img/peasant.jpg);
+	background-size: 100% 100%;
+	position: absolute;
+}
+.oneHead{
+	right: 0;
+}
+.userOneOutView{
+	width: 100%;
+	height: 40%;
+	margin-top: 60%;
+}
+.userTwoOutView{
+	width: 50%;
+	height: 60%;
+	position: absolute;
+	top: 0;
+	margin-left: 12%;
+}
+
+
+/*hover样式*/
+.button:hover {
+	background: rgba(114,109,209,0.8);
+	color: rgba(255,255,255,0.8);
+	transition: all 1s;
+	box-shadow: 0 0 1em rgba(87,210,247,0.8);
+}
+.put:hover  {
+	background: rgba(249,0,0,0.6);
+	transition:all 1s;
+}

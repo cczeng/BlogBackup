@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数组方法</title>
+</head>
+<body>
+	<script>
+		// 使用new关键字创建一个数组
+		var colors1 = new Array();
+		var colors2 = new Array(10);
+		var colors3 = [];
+		document.write('<h1>按下Ctrl+F可直接查找对应数组方法,例：排序</h1>');
+		// 变长数组
+		colors2[12] = 'blue';	//增加至16个长度,其余项为undefined
+		document.write('<p>'+colors2+'</p>');
+		// 数组length属性可读写
+		colors2.length = 5;
+		document.write('<p>'+colors2.length+'</p>');
+		// 检测是否为数组
+		document.write('<p>'+"检测colors3是否为数组："+Array.isArray(colors3)+'</p>');
+		// 把数组转换为string
+		document.write('<h3>'+"把数组转换为字符串的几种方法："+'</h3>');
+		var color = ['red','blue','green'];
+		document.write('<p>'+"\t转换为string(toString):"+ color.toString()+'</p>');
+		document.write('<p>'+"\t转换为string:(valueOf)"+ color.valueOf()+'</p>');
+		document.write('<p>'+"\t转换为string(toLocaleString):"+ color.toLocaleString()+'</p>');
+		document.write('<p>'+"\t转换为string(join):"+ color.join('——')+'</p>');
+		document.write('<p>'+"\t转换为string(默认):"+ color+'</p>');
+
+		// 使用栈方法添加数组元素
+		document.write('<h3>'+"使用栈方法添加数组元素:"+'</h3>');
+		var student = new Array();
+		document.write('<p>'+"\t 使用Array.push()方法在数组末尾添加:"+student.push("zl","xkx")+'</p>');
+		document.write('<p>'+student+'</p>');
+		document.write('<p>'+"\t 使用Array.pop()方法在数组末尾删除最后一项:"+student.pop()+'</p>');
+		document.write('<p>'+student+'</p>');
+		// 使用栈方法添加数组元素
+		document.write('<p>'+"使用队列方法删除数组元素:"+'</p>');
+		var student1 = ['zl','xkx','zzl'];
+		document.write('<p>'+"\t 使用Array.shift()方法在数组前面删除一个:"+ student1.shift()+'</p>');
+		document.write('<p>'+student1+'</p>');
+		document.write('<p>'+"\t 使用Array.unshift()方法在数组前添加n项:"+ student1.unshift('lw')+'</p>');
+		document.write('<p>'+student1+'</p>');
+		// 数组重排序
+		document.write('<h3>'+"数组排序："+'</h3>');
+		var number = [1,50,10,20,30,5,6,10];
+		document.write('<p>'+"原始数组"+ number+'</p>');
+		document.write('<p>'+"\tArray.reverse()方法（翻转）:"+ number.reverse()+'</p>');
+		document.write('<p>'+"原始数组"+ number+'</p>');
+		document.write('<p>'+"\tArray.sort()方法（比较字符串大小排序）:"+ number.sort()+'</p>');
+		document.write('<p>'+"原始数组"+ number+'</p>');
+		document.write('<p>'+"Array.sort()方法（传递一个函数使之正确排序）:"+ number.sort(compare)+'</p>');
+
+		// 操作方法：
+		document.write('<h3>'+"数组的操作方法："+'</h3>');
+		var colors4 = ['red','green','blue'];
+		document.write('<p>'+"原始数组:" + colors4+'</p>');
+		document.write('<p>'+"\t使用Array.concat()方法创建当前数组副本："+'</p>');
+		document.write('<p>'+"\t复制colors4数组并且追加yellow和student1数组进去：" + colors4.concat('yellow',student1)+'</p>');
+		document.write('<p>'+"Array.slice()方法："+'</p>');
+		document.write('<p>'+"\t复制第n项开始到n项的数组(colors4.slice(1,3)):"+ colors4.slice(1,3)+'</p>');
+		document.write('<p>'+"\t复制从第n项到数组末尾(colors4.slice(2)):" + colors4.slice(2)+'</p>');
+		document.write('<p>'+"\t 从数组末尾开始复制(colors4.slice(-2))：" + colors4.slice(-2)+'</p>');
+		document.write('<p>'+"强大的数组方法：array.splice()"+'</p>');
+		document.write('<p>'+"\t删除：array.splice(0,2)删除前两项"+ colors4.splice(0,2)+'</p>');
+		document.write('<p>'+"\t插入：array.splice(2,0,'red','orange')插入项"+ colors4.splice(2,0,'red','orange')+'</p>');
+		document.write('<p>'+"\t替换：array.splice(2,1,'#fff','orange')插入项"+ colors4.splice(2,1,'#fff','orange')+'</p>');
+		document.write('<p>'+'说明：Array.splice()方法第一个参数为开始项，第二个参数为要删除的项，第三个(之后)为要添加的项'+'</p>');
+
+		//位置方法
+		document.write('<h3>数组的位置方法：</h3>');
+		document.write('<p>indexOf()从数组开头查找、\nlastIndexOf()从数组末尾查找方法：</p>');
+		var numbers = [1,2,3,4,5,4,3,2,1];
+		document.write('<p>'+ numbers + '<p>');
+		document.write('<p>numbers.indexOf(4) = ' + numbers.indexOf(4) + '<p>');
+		document.write('<p>numbers.indexOf(4,4) =' + numbers.indexOf(4,4) + '<p>');
+		document.write('<p>numbers.lastIndexOf(4,4) = '+ numbers.lastIndexOf(4,4) + '<p>');
+		document.write('<p>返回值为索引的数组下标<p>');
+
+		//迭代方法
+		document.write('<h3>数组的迭代方法(类似for in)：</h3>');
+		document.write('<p>说明：每一个方法都接受两个参数：要在每一项上运行的函数和运行该函数的作用域对象。传入这些方法中的函数会接收3个参数:数组项的值、该项在数组的位置、数组本身</p>');
+		document.write('<p>every()方法：对数组每一项给定函数，每一项都返回true则返回true</p>');
+		document.write('<p>some()方法：对数组中的每一项运行给定函数，如果该函数对任一项返回true则返回true</p>');
+		
+		document.write('<p>filter()方法：对数组中每一项运行给定函数,该函数会组成一个数组,数组里包含为true的项</p>');
+		document.write('<p>map()方法：对数组中每一项运行给定函数，返回每次函数调用的结果组成的函数。</p>');
+		document.write('<p>forEach()方法：对数组每一项给定函数，没有返回值，类似for循环。</p>');
+		document.write('<h4>例子：</h4>');
+		document.write('<p>'+ numbers +'</p>')
+		var everyResult = numbers.every(function(item,index,array){return (item > 2);})
+		document.write('<p>var everyResult = numbers.every(function(item,index,array){return (item > 2);})</p> =' +everyResult );
+		var someResult = numbers.some(function(item,index,array){return (item>2);});
+		document.write('<p>var someResult = numbers.some(function(item,index,array){return (item>2)});</p> =' +someResult );
+		var filterResult = numbers.filter(function(item,index,array){return (item > 2)});
+		document.write('<p>var filterResult = numbers.filter(function(item,index,array){return (item > 2)});</p> =' +filterResult );
+		var mapResult = numbers.map(function(item,index,array){return item*2;});
+		document.write('<p>var mapResult = numbers.map(function(item,index,array){return item*2;});</p> =' +mapResult );
+		var forEachResult = numbers.forEach(function(item,index,array){/*要进行的操作*/});
+		document.write('<p>var forEachResult = numbers.forEach(function(item,index,array){/*要进行的操作*/});</p> =' +forEachResult );
+
+		// 归并方法
+		document.write('<h3>归并方法：</h3>');
+		document.write('<p>reduce()和reduceRight()方法：</p>');
+		document.write('<p>这两个方法都会迭代数组的所有项，然后构建一个最终返回值。</p>');
+		document.write('<p>这两个方法都接受四个参数：1、前一个值2、当前值3、项的索引4、数组对象，这个函数返回的任何值都会作为第一个参数传递给下一项。</p>');
+		var values = [1,2,3,4,5,6];
+		document.write('<p>'+values+'</p>');
+		var sum = values.reduce(function(prev,cur,index,array){return prev+cur;});
+		document.write('<p>var sum = values.reduce(function(prev,cur,index,array){return prev+cur;});</p> =' +sum );
+
+		function compare(value1,value2) {
+			return value2 - value1;
+			// 想要改变排序方式只需把value2-value1改成value1-value2
+		}
+	</script>
+</body>
+</html>
