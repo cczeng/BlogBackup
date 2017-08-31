@@ -144,9 +144,15 @@ comments: true
 还是编辑根目录下_config.yml文件   
 
 	deploy:
-	type: git
-	repo: git@github.com:cczeng/cczeng.github.io.git  #这里的网址填你自己的
-	branch: master   
+		type: git
+		repo: git@github.com:cczeng/cczeng.github.io.git  #这里的网址填你自己的
+		branch: master   
+  
+**此处感谢有网友帮忙指出错误,原文自第二行起由于疏忽没有缩进 **
+
+具体配置可参考[我的博客备份](https://github.com/cczeng/BlogBackup)  
+  
+
 
 保存后需要提前安装一个扩展：
    

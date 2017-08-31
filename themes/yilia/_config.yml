@@ -71,11 +71,11 @@ share_jia: true
 duoshuo: false
 
 #2、网易云跟帖
-wangyiyun: fd9aceff07134e4f9c230333725250f0
+wangyiyun: false
 
 #3、畅言
-changyan_appid: false
-changyan_conf: false
+changyan_appid: cysWBK2R1
+changyan_conf: c0d676145cb5b4242cedcdef8d2e97d6
 
 #4、Disqus 在hexo根目录的config里也有disqus_shortname字段，优先使用yilia的
 disqus: false
