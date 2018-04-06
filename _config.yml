@@ -3,13 +3,13 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 曾亮的博客 | 诗和远方
+title: 远方
 subtitle: 生活不只是眼前的苟且,还有诗和远方.
-description: 江西环境工程职业学院2013级,擅长前端技能，深入了解C语言，目前正在学习C#
-author: 曾 亮
+description: 江西环境工程职业学院2013级,擅长前端技能，目前正就职于国内某小企业。
+author: 诗和远方
 language: zh-CN
 timezone:
-keywords: 前端,js,Angular2,C,程序猿,曾亮,博客,cczeng,码农,曾亮的博客,诗和远方
+keywords: web,web前端,js,javascript,Angular2,Angular4,Angular5,Vue,Vue2.0,C,C语言,程序猿,博客,cczeng,码农,诗和远方
 
 
 # URL
